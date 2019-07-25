@@ -95,3 +95,114 @@
             </div>
     </div>
     
+    <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
+                        <!-- <p class="modal-title modal-agregar-tarjeta" id="myModalLabel">Agregar Tarjeta</p> -->
+    
+                        <div class="form-row" style="width: 100%;margin: 0 auto;">
+                                <div class="col-md-6 mb-4">
+                                    <img src="/assets/images/bankApp.png" alt="" width="120">
+                                </div>
+                                <div class="col-md-6 mb-4" style="text-align:right;">
+                                        <p class="modal-title modal-agregar-tarjeta" id="myModalLabel">Agregar Tarjeta</p>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+    
+    
+                        <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">4152-3153-9103-8112
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <input type="text" name="numero" #numero="ngModel" [(ngModel)]="tarjeta.numero" class="input-form form-control" placeholder="Numero de Tarjeta" pattern="^4\d{3}-?\d{4}-?\d{4}-?\d{4}$" required>
+                                    <small *ngIf="!numero.valid && numero.touched" class="invalid-feedback d-block">
+                                        El numero no es valido.
+                                    </small>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <!-- <input type="text" class="input-form form-control" id="validationDefault02" placeholder="Cuenta"  required> -->
+                                    <select name="cuenta" #cuenta="ngModel" [(ngModel)]="tarjeta.cuenta" class="custom-select input-form form-control" required>
+                                        <option class="form-select" selected value="" style="color: #07be92 !important;">Cuenta</option>
+                                            <option value="BANORTE">BANORTE</option>
+                                            <option value="BANAMEX">BANAMEX</option>
+                                            <option value="BBVA BANCOMER">BBVA BANCOMER</option>
+                                        
+                                      </select>
+                                      <small *ngIf="!cuenta.valid && cuenta.touched" class="invalid-feedback d-block">
+                                        El cuenta no es valido.
+                                    </small>
+                                    
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" name="issuer" #issuer="ngModel" [(ngModel)]="tarjeta.issuer" class="input-form form-control"  placeholder="Issuer" pattern="[a-zA-ZÀ-ÿ ]+" required>
+                                    <small *ngIf="!issuer.valid && issuer.touched" class="invalid-feedback d-block">
+                                        El issuer no es valido.
+                                    </small>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="tarjeta.nombre" class="input-form form-control" placeholder="Nombre de Tarjeta" pattern="[a-zA-ZÀ-ÿ ]+" required>
+                                    <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                                        El nombre no es valido.
+                                    </small>
+                                </div>
+    
+                                <div class="col-md-12 mb-3">
+                                    <select name="marca" #marca="ngModel" [(ngModel)]="tarjeta.marca" class="custom-select input-form form-control" required>
+                                        <option value="" selected style="color: #07be92 !important;">marca</option>
+                                            <option value="Visa">Visa</option>
+                                            <option value="MaterCard">Mater Card</option>
+                                      </select>
+                                      <small *ngIf="!marca.valid && marca.touched" class="invalid-feedback d-block">
+                                        El marca no es valido.
+                                    </small>
+                                </div>
+    
+                                <div class="col-md-12 mb-3">
+                                    <select name="status" #status="ngModel" [(ngModel)]="tarjeta.status" class="custom-select input-form form-control" required>
+                                        <option value="" selected style="color: #07be92 !important;">status</option>
+                                            <option value="Activa">Activa</option>
+                                            <option value="Desactivada">Desactivada</option>
+                                      </select>
+                                      <small *ngIf="!status.valid && status.touched" class="invalid-feedback d-block">
+                                        El status no es valido.
+                                    </small>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <input type="text" name="saldo" #saldo="ngModel" [(ngModel)]="tarjeta.saldo" class="input-form form-control" placeholder="Saldo" pattern="^-?[0-9]\d*(\.\d+)?$" required>
+                                    <small *ngIf="!saldo.valid && saldo.touched" class="invalid-feedback d-block">
+                                        El saldo no es valido.
+                                    </small>
+                                </div>
+    
+                                <div class="col-md-12 mb-3">
+                                    <select name="tipo" #tipo="ngModel" [(ngModel)]="tarjeta.tipo" class="custom-select input-form form-control" required>
+                                        <option value="" selected style="color: #07be92 !important;">tipo</option>
+                                            <option value="Debito">Debito</option>
+                                            <option value="Credito">Credito</option>
+                                      </select>
+                                      <small *ngIf="!tipo.valid && tipo.touched" class="invalid-feedback d-block">
+                                        El tipo no es valido.
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="form-row" style="width: 65%;text-align: center;margin: 0 auto;">
+                                    <button class="col-md-6 mb-4 btn-cancelar" data-dismiss="modal" aria-label="Close">
+                                        Cancelar
+                                    </button>
+                                    <button class="col-md-6 mb-4 btn-agregar" [disabled]="registerForm.invalid">
+                                        Agregar Tarjeta
+                                    </button>
+                            </div>
+                        </form>
+    
+    
+    
+                    </div>
+                </div>
+            </div>
+        </div>
