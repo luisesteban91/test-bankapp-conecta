@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
-import { Tarjeta} from '../../models/tarjeta';
-import { TarjetaService } from '../../services/tarjeta.service';//servicio
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Tarjeta} from '../../models/tarjeta'; //IMPORTAR EL MODELO TARJETA
+import { TarjetaService } from '../../services/tarjeta.service';//IMPORTAR EL SERVICIO DE TARJETAS ENCARGADO DE REALIZAR LAS PETICIONES GET
+import { HttpClient, HttpHeaders } from '@angular/common/http';//IMPORTAR COMMON PARA PODER REALIZAR PETICIONES HTTP
 
 @Component({
   selector: 'app-mis-cuentas',
@@ -32,26 +32,29 @@ export class MisCuentasComponent implements OnInit {
      this.total_ingresos = "8,000.00";
      this.total_gastos = "6,000.00";
 
-     this.tarjeta = new Tarjeta('1', '', '', '', '', '', '', '', '');
+     //SE CARGA EL OBJETO DESDE EL MODELO Tarjeta 
+    this.tarjeta = new Tarjeta('1', '', '', '', '', '', '', '', '');
 
   }
 
   ngOnInit() {
+    //EJECUTAR LOS METODOS AL CARGAR LA PAGINA
     this.getDatosPersona();
     this.getDatosTarjeta();
     this.getDatosMovimientos();
   }
 
+  //METODO QUE SE EJECUTA CON EL EVENTO DE CLIC EN EL BOTON DE GUARDAR TARJETA
   onSubmit(form){
     console.log(this.tarjeta);
-    form.reset();
-    alert(JSON.stringify(this.tarjeta));
     
-    this._router.navigate(['/#']);
+    alert(JSON.stringify(this.tarjeta));
+    form.reset();
+    this._router.navigate(['/home']);
   }
-  
-  getDatosPersona(){
 
+  //METODO QUE OBTIENE LOS DAT0S DEL USAURIO DESDE /services/tarjeta.service.ts
+  getDatosPersona(){
     this._tarjetaService.getDatos().subscribe(
       Response => {
         if(Response){
@@ -62,9 +65,6 @@ export class MisCuentasComponent implements OnInit {
             this.total_ingresos = Response[i]['ingresos'];
             this.total_gastos = Response[i]['gastos'];
           }
-
-          //form.reset();
-          //this._router.navigate(['/#']);
         }else{
           this.status = 'error';
         }
@@ -76,6 +76,7 @@ export class MisCuentasComponent implements OnInit {
 
   }
 
+//METODO QUE OBTIENE LOS DAT0S DE LAS TARJETAS DESDE /services/tarjeta.service.ts
   getDatosTarjeta(){
 
     this._tarjetaService.getTarjetas().subscribe(
@@ -95,8 +96,8 @@ export class MisCuentasComponent implements OnInit {
 
   }
 
+  //METODO QUE OBTIENE LOS MOVIMIENTOS DESDE /services/tarjeta.service.ts
   getDatosMovimientos(){
-
     this._tarjetaService.getMovimientos().subscribe(
       Response => {
         if(Response){
