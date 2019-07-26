@@ -42,8 +42,12 @@ export class MisCuentasComponent implements OnInit {
     this.getDatosMovimientos();
   }
 
-  onSubmit(){
-    //console.log(this.tarjeta);    
+  onSubmit(form){
+    console.log(this.tarjeta);
+    form.reset();
+    alert(JSON.stringify(this.tarjeta));
+    
+    this._router.navigate(['/#']);
   }
   
   getDatosPersona(){

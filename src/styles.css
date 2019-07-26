@@ -155,3 +155,27 @@ table{
 .isDesactivada{
     opacity: 0.5;
 }
+
+/* ESTILOS MOBILE */
+@media screen and (min-width: 201px) and (max-width: 1068px){
+	.info-cuentas{
+        max-width: 300px!important;
+        margin-left: auto!important;
+        margin-right: auto!important;
+        margin-bottom: 5px!important;
+        text-align: center!important;
+    }
+    .tarjetas{
+        margin-left: 5px!important;
+        margin-right: 5px!important;
+    }
+    .table{
+        margin-left: 5px!important;
+        margin-right: 5px!important;
+    }
+    .div-footer{
+        display: block!important;
+        width: 100%!important;
+        text-align: center!important;
+    }
+}
