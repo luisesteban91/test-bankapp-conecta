@@ -7,7 +7,7 @@
                     SALDO GENERAL <br> EN CUENTAS
                 </div>
                 <div class="cantidad">
-                    <span>${{saldo_general}}</span>
+                    <span>${{saldo_general}}.00</span>
                 </div>
             </div>
     
@@ -16,7 +16,7 @@
                     TOTAL DE<br> INGRESOS
                 </div>
                 <div class="cantidad">
-                    <span>${{total_ingresos}}</span>
+                    <span>${{total_ingresos}}.00</span>
                 </div>
             </div>
     
@@ -25,7 +25,7 @@
                     TOTAL DE<br> GASTOS
                 </div>
                 <div class="cantidad">
-                    <span>${{total_gastos}}</span>
+                    <span>${{total_gastos}}.00</span>
                 </div>
             </div>
         </div>
@@ -36,26 +36,31 @@
     
                 <div class="col col-lg-3 tarjetas">
                     <p>MIS CUENTAS</p>
-                        <div class="col col-lg-12" class="tarjeta">              
+
+                        <div class="col col-lg-12" class="tarjeta" *ngFor="let tar of tarjetas"  [class.isDesactivada]="tar.estado == 'desactivada'" style="margin-bottom:10px;">              
                             <div>
-                               <table class="tarjetaTabla">
+                               <table class="tarjetaTabla" style="width: 288px;">
                                    <tr>
-                                       <td>Activa</td>
-                                       <td>$1,500.00</td>
+                                       <td>{{tar.estado}}</td>
+                                       <td>${{tar.saldo}}</td>
                                    </tr>
                                    <tr>
-                                       <td>3234-1234-1234-1234</td>
+                                       <td>{{tar.tarjeta}}</td>
                                    </tr>
                                    <tr>
-                                        <td>Luis Esteban Cuacua Chicuellar</td>
+                                        <td>{{tar.nombre}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Titular</td>
+                                        <td>{{tar.tipo}}</td>
                                         <td><img src="/assets/images/master.png" width="48" alt=""></td>
                                     </tr>
                                </table>
+
+                               
                             </div>
                         </div>
+
+
                         <div class="agregarTarjeta">
                              <a data-toggle="modal" data-target="#miModal" href=""> AGREGAR TARJETA &nbsp;&nbsp;&nbsp;&nbsp;<span style="border: 2px dashed #07be92;font-size: 24px;border-radius: 5px;">&nbsp;&nbsp;+&nbsp;&nbsp;</span> </a>
                         </div>
@@ -73,21 +78,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>Larry the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>@mdo</td>
-                                </tr>
+                                <tr *ngFor="let mov of movimientos">
+                                    <td>{{mov.fecha}}</td>
+                                    <td>{{mov.descripcion}}</td>
+                                    <td [class.letraRoja]="mov.tipo == 'abono'" [class.letraVerde]="mov.tipo == 'cargo'" >{{mov.monto}}</td>
+                                </tr>                                
                             </tbody>
                         </table>
                     </div>

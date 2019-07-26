@@ -144,3 +144,14 @@ table{
 .form-select{
     color: #07be92!important;
 }
+
+.letraRoja{
+    color:red;
+}
+.letraVerde{
+    color:#07be92;
+}
+
+.isDesactivada{
+    opacity: 0.5;
+}
